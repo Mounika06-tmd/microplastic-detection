@@ -1,0 +1,887 @@
+/* ============================================================
+   RESET
+============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #061426;
+    color: #eaf4ff;
+    line-height: 1.6;
+}
+
+
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 20px 8%;
+
+    background: #071a2d;
+
+    border-bottom: 1px solid #173a59;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+}
+
+
+.logo {
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    color: #55baff;
+}
+
+
+nav {
+
+    display: flex;
+
+    gap: 30px;
+}
+
+
+nav a {
+
+    color: #c9d9e8;
+
+    text-decoration: none;
+
+    font-size: 15px;
+}
+
+
+nav a:hover {
+
+    color: #55baff;
+}
+
+
+
+/* ============================================================
+   HERO
+============================================================ */
+
+.hero {
+
+    min-height: 90vh;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 60px;
+
+    padding: 80px 8%;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            #0b3558,
+            #061426 55%
+        );
+}
+
+
+.hero-content {
+
+    flex: 1;
+
+    max-width: 650px;
+}
+
+
+.small-title {
+
+    color: #4db8ff;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 15px;
+}
+
+
+.hero h1 {
+
+    font-size: 58px;
+
+    line-height: 1.1;
+
+    margin-bottom: 25px;
+}
+
+
+.hero h1 span {
+
+    color: #4db8ff;
+}
+
+
+.description {
+
+    color: #9fb4c9;
+
+    font-size: 17px;
+}
+
+
+
+/* ============================================================
+   INPUT
+============================================================ */
+
+.input-card {
+
+    width: 440px;
+
+    background: #0b2038;
+
+    border: 1px solid #1c4567;
+
+    border-radius: 18px;
+
+    padding: 35px;
+
+    text-align: center;
+}
+
+
+.upload-icon {
+
+    font-size: 42px;
+
+    margin-bottom: 15px;
+}
+
+
+.input-card h2 {
+
+    margin-bottom: 10px;
+}
+
+
+.input-card > p {
+
+    color: #8fa7bc;
+
+    margin-bottom: 25px;
+}
+
+
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+
+.buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 25px;
+}
+
+
+.btn {
+
+    border: none;
+
+    cursor: pointer;
+
+    padding: 12px 20px;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+}
+
+
+.primary-btn {
+
+    background: #1689d7;
+
+    color: white;
+}
+
+
+.primary-btn:hover {
+
+    background: #2ba6ef;
+}
+
+
+.secondary-btn {
+
+    background: #102f4b;
+
+    color: white;
+
+    border: 1px solid #2c5778;
+}
+
+
+
+/* ============================================================
+   CAMERA
+============================================================ */
+
+.camera-container {
+
+    margin-bottom: 20px;
+}
+
+
+#cameraVideo {
+
+    width: 100%;
+
+    border-radius: 10px;
+
+    background: black;
+}
+
+
+.camera-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 12px;
+
+    flex-wrap: wrap;
+}
+
+
+
+/* ============================================================
+   PREVIEW
+============================================================ */
+
+.preview-container {
+
+    min-height: 240px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 15px;
+
+    background: #07182a;
+
+    border: 1px dashed #315a7b;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    margin-bottom: 20px;
+}
+
+
+.preview-container p {
+
+    color: #667f95;
+}
+
+
+#imagePreview {
+
+    max-width: 100%;
+
+    max-height: 350px;
+
+    display: none;
+
+    object-fit: contain;
+
+    border-radius: 8px;
+}
+
+
+
+/* ============================================================
+   ANALYZE
+============================================================ */
+
+.analyze-btn {
+
+    width: 100%;
+
+    border: none;
+
+    padding: 15px;
+
+    border-radius: 9px;
+
+    background: #1689d7;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.analyze-btn:hover {
+
+    background: #2ca6ed;
+}
+
+
+.analyze-btn:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+
+/* ============================================================
+   FEATURES
+============================================================ */
+
+.features-section {
+
+    padding: 100px 8%;
+
+    background: #07192c;
+}
+
+
+.section-heading {
+
+    text-align: center;
+
+    max-width: 700px;
+
+    margin: 0 auto 50px;
+}
+
+
+.section-heading h2 {
+
+    font-size: 38px;
+
+    margin-bottom: 15px;
+}
+
+
+.section-heading > p:last-child {
+
+    color: #91a7ba;
+}
+
+
+.features-grid {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+
+.feature-card {
+
+    background: #0b2038;
+
+    border: 1px solid #1b4164;
+
+    border-radius: 14px;
+
+    padding: 28px;
+
+    text-align: center;
+}
+
+
+.feature-icon {
+
+    font-size: 32px;
+
+    margin-bottom: 15px;
+}
+
+
+.feature-card h3 {
+
+    margin-bottom: 10px;
+}
+
+
+.feature-card p {
+
+    color: #8ea5b9;
+
+    font-size: 14px;
+}
+
+
+
+/* ============================================================
+   RESULTS
+============================================================ */
+
+.results-section {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 100px 8%;
+
+    background: #061426;
+}
+
+
+.results-images {
+
+    max-width: 1200px;
+
+    margin: 0 auto 40px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px;
+}
+
+
+.result-image-card {
+
+    background: #0b2038;
+
+    border: 1px solid #1b4164;
+
+    border-radius: 15px;
+
+    padding: 25px;
+}
+
+
+.result-image-card h3 {
+
+    text-align: center;
+
+    margin-bottom: 20px;
+}
+
+
+.result-image-container {
+
+    width: 100%;
+
+    min-height: 350px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #07192c;
+
+    border: 1px dashed #315574;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    padding: 15px;
+}
+
+
+/*
+   IMPORTANT:
+   Do NOT use display:none here.
+   JavaScript controls the visibility.
+*/
+
+#originalResultImage {
+
+    max-width: 100%;
+
+    max-height: 550px;
+
+    object-fit: contain;
+
+    border-radius: 8px;
+}
+
+
+#outputResultImage {
+
+    max-width: 100%;
+
+    max-height: 550px;
+
+    width: 100%;
+
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 8px;
+
+    display: none;
+
+    visibility: visible;
+
+    opacity: 1;
+}
+
+
+.result-image-container p {
+
+    color: #71879c;
+
+    text-align: center;
+}
+
+
+
+/* ============================================================
+   PARTICLE COUNTS
+============================================================ */
+
+.particles-container {
+
+    max-width: 1000px;
+
+    margin: 40px auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+.particle-card {
+
+    background: #0b2038;
+
+    border: 1px solid #1b4164;
+
+    border-radius: 15px;
+
+    padding: 30px;
+
+    text-align: center;
+}
+
+
+.particle-card h3 {
+
+    color: #a9bfd2;
+
+    margin-bottom: 10px;
+}
+
+
+.particle-card span {
+
+    font-size: 40px;
+
+    font-weight: bold;
+
+    color: #4db8ff;
+}
+
+
+
+/* ============================================================
+   WATER STATUS
+============================================================ */
+
+.water-status-card {
+
+    max-width: 500px;
+
+    margin: 35px auto;
+
+    padding: 30px;
+
+    text-align: center;
+
+    background: #0b2038;
+
+    border: 1px solid #1b4164;
+
+    border-radius: 15px;
+}
+
+
+.water-status-card h3 {
+
+    margin-bottom: 12px;
+}
+
+
+#waterStatus {
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #4db8ff;
+}
+
+
+
+/* ============================================================
+   DETECTIONS
+============================================================ */
+
+.detection-details {
+
+    max-width: 1000px;
+
+    margin: 40px auto;
+
+    padding: 30px;
+
+    background: #0b2038;
+
+    border: 1px solid #1b4164;
+
+    border-radius: 15px;
+}
+
+
+.detection-details h3 {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+
+#detectionList {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.detection-item {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 12px 18px;
+
+    background: #102d49;
+
+    border-radius: 8px;
+
+    color: #c7d8e8;
+}
+
+
+#detectionList p {
+
+    text-align: center;
+
+    color: #8298ab;
+}
+
+
+
+/* ============================================================
+   DOWNLOAD
+============================================================ */
+
+.download-btn {
+
+    display: block;
+
+    width: fit-content;
+
+    margin: 30px auto 0;
+
+    padding: 13px 25px;
+
+    background: #1689d7;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+}
+
+
+.download-btn:hover {
+
+    background: #36a8f0;
+}
+
+
+
+/* ============================================================
+   FOOTER
+============================================================ */
+
+footer {
+
+    padding: 30px;
+
+    text-align: center;
+
+    background: #04101e;
+
+    border-top: 1px solid #173a59;
+
+    color: #72899d;
+}
+
+
+footer p:first-child {
+
+    color: #a9c3d8;
+
+    font-weight: bold;
+
+    margin-bottom: 5px;
+}
+
+
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 1000px) {
+
+    .hero {
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+
+    .input-card {
+
+        width: 100%;
+
+        max-width: 500px;
+    }
+
+
+    .features-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .header {
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    .results-images {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .particles-container {
+
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .hero {
+
+        padding: 60px 5%;
+    }
+
+
+    .hero h1 {
+
+        font-size: 40px;
+    }
+
+
+    .features-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+}

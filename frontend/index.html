@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Microplastic Detection in Water
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="styles.css?v=10"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <div class="logo">
+        Microplastic Detection
+    </div>
+
+    <nav>
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#features">
+            Features
+        </a>
+
+        <a href="#results">
+            Results
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ========================================================
+     HOME
+========================================================= -->
+
+<section
+    class="hero"
+    id="home"
+>
+
+    <div class="hero-content">
+
+        <p class="small-title">
+            AI-POWERED WATER ANALYSIS
+        </p>
+
+        <h1>
+            Microplastic Detection
+            <br>
+            <span>in Water</span>
+        </h1>
+
+        <p class="description">
+
+            Detect and analyze microplastic particles
+            in water samples using artificial intelligence
+            and image analysis.
+
+            Upload an image or use your camera to identify
+            particles and understand the quality of the
+            water sample.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="input-card">
+
+        <div class="upload-icon">
+            📷
+        </div>
+
+        <h2>
+            Analyze Water Sample
+        </h2>
+
+        <p>
+            Upload an image of your water sample or
+            capture an image using your camera.
+        </p>
+
+
+        <div class="buttons">
+
+            <label
+                for="imageInput"
+                class="btn primary-btn"
+            >
+                Upload Image
+            </label>
+
+
+            <input
+                type="file"
+                id="imageInput"
+                accept="image/*"
+                hidden
+            >
+
+
+            <button
+                id="cameraButton"
+                class="btn secondary-btn"
+                type="button"
+            >
+                Open Camera
+            </button>
+
+        </div>
+
+
+
+        <!-- CAMERA -->
+
+        <div
+            id="cameraContainer"
+            class="camera-container"
+            style="display:none;"
+        >
+
+            <video
+                id="cameraVideo"
+                autoplay
+                playsinline
+            ></video>
+
+            <div class="camera-buttons">
+
+                <button
+                    id="captureButton"
+                    class="btn primary-btn"
+                    type="button"
+                >
+                    Capture Image
+                </button>
+
+                <button
+                    id="closeCameraButton"
+                    class="btn secondary-btn"
+                    type="button"
+                >
+                    Close Camera
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PREVIEW -->
+
+        <div
+            class="preview-container"
+            id="previewContainer"
+        >
+
+            <p id="previewText">
+                Your selected image will appear here
+            </p>
+
+            <img
+                id="imagePreview"
+                src=""
+                alt="Selected water sample"
+            >
+
+        </div>
+
+
+
+        <button
+            class="analyze-btn"
+            id="analyzeButton"
+            type="button"
+        >
+            Analyze Image
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================
+     FEATURES
+========================================================= -->
+
+<section
+    class="features-section"
+    id="features"
+>
+
+    <div class="section-heading">
+
+        <p class="small-title">
+            WHAT THE SYSTEM PROVIDES
+        </p>
+
+        <h2>
+            Project Features
+        </h2>
+
+        <p>
+            Our system uses a trained YOLO model to detect
+            and analyze particles present in water sample
+            images.
+        </p>
+
+    </div>
+
+
+    <div class="features-grid">
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🔍
+            </div>
+
+            <h3>
+                Particle Detection
+            </h3>
+
+            <p>
+                Detect microplastic and other particles
+                present in water sample images.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🤖
+            </div>
+
+            <h3>
+                AI-Based Analysis
+            </h3>
+
+            <p>
+                A trained YOLO model identifies and
+                classifies different particle types.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3>
+                Particle Analysis
+            </h3>
+
+            <p>
+                View total detected particles and
+                their individual classes.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                💧
+            </div>
+
+            <h3>
+                Water Status
+            </h3>
+
+            <p>
+                Analyze detected particles to understand
+                the condition of the water sample.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================
+     RESULTS
+========================================================= -->
+
+<section
+    class="results-section"
+    id="results"
+>
+
+    <div class="section-heading">
+
+        <p class="small-title">
+            AI ANALYSIS RESULTS
+        </p>
+
+        <h2>
+            Detection Results
+        </h2>
+
+        <p>
+            View the original image and the YOLO
+            detected output.
+        </p>
+
+    </div>
+
+
+
+    <!-- IMAGES -->
+
+    <div class="results-images">
+
+
+        <!-- ORIGINAL -->
+
+        <div class="result-image-card">
+
+            <h3>
+                Original Image
+            </h3>
+
+            <div class="result-image-container">
+
+                <img
+                    id="originalResultImage"
+                    src=""
+                    alt="Original water sample"
+                >
+
+                <p id="originalImageText">
+                    Upload and analyze an image
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DETECTED -->
+
+        <div class="result-image-card">
+
+            <h3>
+                Detected Image
+            </h3>
+
+            <div class="result-image-container">
+
+                <img
+                    id="outputResultImage"
+                    src=""
+                    alt="YOLO detected image"
+                >
+
+                <p id="outputImageText">
+                    Detection result will appear here
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- COUNTS -->
+
+    <div class="particles-container">
+
+        <div class="particle-card">
+
+            <h3>
+                Total Particles
+            </h3>
+
+            <span id="totalParticles">
+                0
+            </span>
+
+        </div>
+
+
+        <div class="particle-card">
+
+            <h3>
+                Plastic Particles
+            </h3>
+
+            <span id="plasticParticles">
+                0
+            </span>
+
+        </div>
+
+
+        <div class="particle-card">
+
+            <h3>
+                Non-Plastic Particles
+            </h3>
+
+            <span id="nonPlasticParticles">
+                0
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- STATUS -->
+
+    <div class="water-status-card">
+
+        <h3>
+            Water Status
+        </h3>
+
+        <span id="waterStatus">
+            Waiting for analysis
+        </span>
+
+    </div>
+
+
+
+    <!-- DETECTIONS -->
+
+    <div class="detection-details">
+
+        <h3>
+            Detected Particle Details
+        </h3>
+
+        <div id="detectionList">
+
+            <p>
+                No analysis performed yet.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DOWNLOAD -->
+
+    <a
+        id="downloadButton"
+        class="download-btn"
+        href="#"
+        download="microplastic_detection_result.png"
+        style="display:none;"
+    >
+        Download Detected Image
+    </a>
+
+</section>
+
+
+
+<!-- ========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <p>
+        Microplastic Detection in Water
+    </p>
+
+    <p>
+        AI-Based Water Sample Analysis
+    </p>
+
+</footer>
+
+
+
+<!-- ========================================================
+     SCRIPT
+========================================================= -->
+
+<script src="script.js?v=10"></script>
+
+</body>
+
+</html>
