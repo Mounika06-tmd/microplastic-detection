@@ -19,29 +19,41 @@ CORS(app)
 # PROJECT PATHS
 # ============================================================
 
-BASE_DIR = os.path.dirname(
-    os.path.abspath(__file__)
-)
+# backend/
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-PROJECT_DIR = os.path.dirname(
-    BASE_DIR
-)
+# micro_plastic_detection/
+PROJECT_DIR = os.path.dirname(BASE_DIR)
 
+# frontend/
 FRONTEND_FOLDER = os.path.join(
     PROJECT_DIR,
     "frontend"
 )
 
+# backend/uploads/
 UPLOAD_FOLDER = os.path.join(
     BASE_DIR,
     "uploads"
 )
 
+# backend/outputs/
 OUTPUT_FOLDER = os.path.join(
     BASE_DIR,
     "outputs"
 )
 
+# model/yolov8s-seg.pt
+MODEL_PATH = os.path.join(
+    PROJECT_DIR,
+    "model",
+    "yolov8s-seg.pt"
+)
+
+
+# ============================================================
+# CREATE REQUIRED FOLDERS
+# ============================================================
 
 os.makedirs(
     UPLOAD_FOLDER,
@@ -58,20 +70,38 @@ os.makedirs(
 # YOLO MODEL
 # ============================================================
 
-MODEL_PATH = r"C:\Users\mouni\OneDrive\Documents\micro_plastic_detection\model\yolov8s-seg.pt"
-
-
 print()
 print("========================================")
 print("LOADING YOLO MODEL")
 print("========================================")
 
+print("MODEL PATH:")
+print(MODEL_PATH)
+
+# Check whether model exists
+if not os.path.exists(MODEL_PATH):
+
+    print()
+    print("ERROR: YOLO MODEL NOT FOUND")
+    print(MODEL_PATH)
+    print()
+
+    raise FileNotFoundError(
+        f"YOLO model not found: {MODEL_PATH}"
+    )
+
+
+# Load model only ONCE
 model = YOLO(MODEL_PATH)
 
+print()
 print("YOLO model loaded successfully!")
 
 print("Model classes:")
 print(model.names)
+
+print("========================================")
+print()
 
 
 # ============================================================
@@ -195,10 +225,26 @@ def predict():
         image.filename
     )
 
+    # Add timestamp to avoid filename conflicts
+    timestamp = int(
+        time.time() * 1000
+    )
+
+    filename_without_extension = os.path.splitext(
+        original_filename
+    )[0]
+
+    extension = os.path.splitext(
+        original_filename
+    )[1]
+
+    safe_filename = (
+        f"{filename_without_extension}_{timestamp}{extension}"
+    )
 
     input_path = os.path.join(
         UPLOAD_FOLDER,
-        original_filename
+        safe_filename
     )
 
 
@@ -233,8 +279,10 @@ def predict():
             verbose=False
         )
 
+
     except Exception as error:
 
+        print()
         print(
             "YOLO ERROR:"
         )
@@ -262,6 +310,7 @@ def predict():
     for result in results:
 
         if result.boxes is None:
+
             continue
 
 
@@ -321,12 +370,13 @@ def predict():
 
     for detection in detections:
 
-        if (
+        detected_class = (
             detection["class"]
             .lower()
             .strip()
-            in plastic_classes
-        ):
+        )
+
+        if detected_class in plastic_classes:
 
             plastic_particles += 1
 
@@ -367,11 +417,6 @@ def predict():
         )
 
 
-        timestamp = int(
-            time.time() * 1000
-        )
-
-
         output_filename = (
             f"result_{timestamp}.png"
         )
@@ -398,6 +443,7 @@ def predict():
 
     except Exception as error:
 
+        print()
         print(
             "OUTPUT IMAGE ERROR:"
         )
@@ -515,7 +561,7 @@ def predict():
 
 
 # ============================================================
-# RUN
+# RUN APPLICATION
 # ============================================================
 
 if __name__ == "__main__":
@@ -537,6 +583,7 @@ if __name__ == "__main__":
     print()
 
 
+    # Local development
     app.run(
         host="127.0.0.1",
         port=5000,
