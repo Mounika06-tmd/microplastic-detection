@@ -1,529 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Microplastic Detection</title>
 
-    <title>
-        Microplastic Detection in Water
-    </title>
-
-    <link
-        rel="stylesheet"
-        href="styles.css?v=10"
-    >
-
+    <link rel="stylesheet" href="/styles.css">
 </head>
-
 
 <body>
 
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar">
 
-<header class="header">
-
-    <div class="logo">
-        Microplastic Detection
-    </div>
-
-    <nav>
-
-        <a href="#home">
-            Home
-        </a>
-
-        <a href="#features">
-            Features
-        </a>
-
-        <a href="#results">
-            Results
-        </a>
-
-    </nav>
-
-</header>
-
-
-
-<!-- ========================================================
-     HOME
-========================================================= -->
-
-<section
-    class="hero"
-    id="home"
->
-
-    <div class="hero-content">
-
-        <p class="small-title">
-            AI-POWERED WATER ANALYSIS
-        </p>
-
-        <h1>
-            Microplastic Detection
-            <br>
-            <span>in Water</span>
-        </h1>
-
-        <p class="description">
-
-            Detect and analyze microplastic particles
-            in water samples using artificial intelligence
-            and image analysis.
-
-            Upload an image or use your camera to identify
-            particles and understand the quality of the
-            water sample.
-
-        </p>
-
-    </div>
-
-
-
-    <div class="input-card">
-
-        <div class="upload-icon">
-            📷
+        <div class="logo">
+            🧪 <span>Microplastic Detection</span>
         </div>
 
-        <h2>
-            Analyze Water Sample
-        </h2>
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#particles">Particles</a>
+            <a href="#about">About</a>
+        </nav>
 
-        <p>
-            Upload an image of your water sample or
-            capture an image using your camera.
-        </p>
-
-
-        <div class="buttons">
-
-            <label
-                for="imageInput"
-                class="btn primary-btn"
-            >
-                Upload Image
-            </label>
-
-
-            <input
-                type="file"
-                id="imageInput"
-                accept="image/*"
-                hidden
-            >
-
-
-            <button
-                id="cameraButton"
-                class="btn secondary-btn"
-                type="button"
-            >
-                Open Camera
-            </button>
-
+        <div class="nav-buttons">
+            <a href="/signin.html" class="btn btn-outline">Sign In</a>
+            <a href="/signup.html" class="btn btn-primary">Sign Up</a>
         </div>
 
+    </header>
 
 
-        <!-- CAMERA -->
+    <!-- ================= HERO SECTION ================= -->
+    <section id="home" class="hero">
 
-        <div
-            id="cameraContainer"
-            class="camera-container"
-            style="display:none;"
-        >
+        <div class="hero-content">
 
-            <video
-                id="cameraVideo"
-                autoplay
-                playsinline
-            ></video>
+            <h1>MICROPLASTIC DETECTION IN WATER</h1>
 
-            <div class="camera-buttons">
+            <p class="hero-subtitle">
+                Detect and analyze microplastic particles
+                <br>
+                in water samples using AI
+            </p>
 
-                <button
-                    id="captureButton"
-                    class="btn primary-btn"
-                    type="button"
-                >
-                    Capture Image
+            <div class="hero-buttons">
+
+                <button class="btn btn-primary start-analysis-btn"
+                        onclick="startAnalysis()">
+                    Start Analysis
                 </button>
 
-                <button
-                    id="closeCameraButton"
-                    class="btn secondary-btn"
-                    type="button"
-                >
-                    Close Camera
-                </button>
+                <a href="#features" class="btn btn-outline">
+                    Learn More
+                </a>
+
+            </div>
+
+            <!-- Login warning -->
+            <div id="login-warning" class="login-warning">
+
+                <div class="warning-icon">
+                    ⚠
+                </div>
+
+                <div>
+                    <strong>Analysis requires an account</strong>
+
+                    <p>
+                        Please sign in to perform an analysis.
+                    </p>
+
+                    <a href="/signin.html" class="btn btn-primary">
+                        Sign In
+                    </a>
+                </div>
 
             </div>
 
         </div>
 
+    </section>
 
 
-        <!-- PREVIEW -->
+    <!-- ================= FEATURES ================= -->
+    <section id="features" class="section">
 
-        <div
-            class="preview-container"
-            id="previewContainer"
-        >
+        <div class="section-title">
 
-            <p id="previewText">
-                Your selected image will appear here
-            </p>
-
-            <img
-                id="imagePreview"
-                src=""
-                alt="Selected water sample"
-            >
-
-        </div>
-
-
-
-        <button
-            class="analyze-btn"
-            id="analyzeButton"
-            type="button"
-        >
-            Analyze Image
-        </button>
-
-    </div>
-
-</section>
-
-
-
-<!-- ========================================================
-     FEATURES
-========================================================= -->
-
-<section
-    class="features-section"
-    id="features"
->
-
-    <div class="section-heading">
-
-        <p class="small-title">
-            WHAT THE SYSTEM PROVIDES
-        </p>
-
-        <h2>
-            Project Features
-        </h2>
-
-        <p>
-            Our system uses a trained YOLO model to detect
-            and analyze particles present in water sample
-            images.
-        </p>
-
-    </div>
-
-
-    <div class="features-grid">
-
-
-        <div class="feature-card">
-
-            <div class="feature-icon">
-                🔍
-            </div>
-
-            <h3>
-                Particle Detection
-            </h3>
+            <h2>PROJECT FEATURES</h2>
 
             <p>
-                Detect microplastic and other particles
-                present in water sample images.
+                Powerful tools to analyze water samples
+                and detect microplastic particles.
             </p>
 
         </div>
 
 
-        <div class="feature-card">
+        <div class="features-grid">
 
-            <div class="feature-icon">
-                🤖
+            <!-- Upload -->
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📷
+                </div>
+
+                <h3>Upload Image</h3>
+
+                <p>
+                    Upload a water sample image
+                    for AI-based analysis.
+                </p>
+
             </div>
 
-            <h3>
-                AI-Based Analysis
-            </h3>
 
-            <p>
-                A trained YOLO model identifies and
-                classifies different particle types.
-            </p>
+            <!-- Camera -->
+            <div class="feature-card">
 
-        </div>
+                <div class="feature-icon">
+                    📹
+                </div>
 
+                <h3>Camera Detection</h3>
 
-        <div class="feature-card">
+                <p>
+                    Capture a water sample directly
+                    using your camera.
+                </p>
 
-            <div class="feature-icon">
-                📊
             </div>
 
-            <h3>
-                Particle Analysis
-            </h3>
 
-            <p>
-                View total detected particles and
-                their individual classes.
-            </p>
+            <!-- AI -->
+            <div class="feature-card">
 
-        </div>
+                <div class="feature-icon">
+                    🤖
+                </div>
 
+                <h3>AI Detection</h3>
 
-        <div class="feature-card">
+                <p>
+                    YOLO-based AI detects and identifies
+                    particles in the sample.
+                </p>
 
-            <div class="feature-icon">
-                💧
             </div>
 
-            <h3>
-                Water Status
-            </h3>
 
-            <p>
-                Analyze detected particles to understand
-                the condition of the water sample.
-            </p>
+            <!-- Analytics -->
+            <div class="feature-card">
 
-        </div>
+                <div class="feature-icon">
+                    📊
+                </div>
 
-    </div>
+                <h3>Analytics & Graphs</h3>
 
-</section>
+                <p>
+                    View particle counts and
+                    detailed analysis graphs.
+                </p>
 
-
-
-<!-- ========================================================
-     RESULTS
-========================================================= -->
-
-<section
-    class="results-section"
-    id="results"
->
-
-    <div class="section-heading">
-
-        <p class="small-title">
-            AI ANALYSIS RESULTS
-        </p>
-
-        <h2>
-            Detection Results
-        </h2>
-
-        <p>
-            View the original image and the YOLO
-            detected output.
-        </p>
-
-    </div>
+            </div>
 
 
+            <!-- Purity -->
+            <div class="feature-card">
 
-    <!-- IMAGES -->
+                <div class="feature-icon">
+                    💧
+                </div>
 
-    <div class="results-images">
+                <h3>Purity Index</h3>
+
+                <p>
+                    Calculate the purity index
+                    based on detected particles.
+                </p>
+
+            </div>
 
 
-        <!-- ORIGINAL -->
+            <!-- PDF -->
+            <div class="feature-card">
 
-        <div class="result-image-card">
+                <div class="feature-icon">
+                    📄
+                </div>
 
-            <h3>
-                Original Image
-            </h3>
+                <h3>PDF Report</h3>
 
-            <div class="result-image-container">
-
-                <img
-                    id="originalResultImage"
-                    src=""
-                    alt="Original water sample"
-                >
-
-                <p id="originalImageText">
-                    Upload and analyze an image
+                <p>
+                    Download your analysis results
+                    as a PDF report.
                 </p>
 
             </div>
 
         </div>
 
+    </section>
 
 
-        <!-- DETECTED -->
+    <!-- ================= PARTICLES ================= -->
+    <section id="particles" class="section particles-section">
 
-        <div class="result-image-card">
+        <div class="section-title">
 
-            <h3>
-                Detected Image
-            </h3>
+            <h2>DETECTED PARTICLES</h2>
 
-            <div class="result-image-container">
+            <p>
+                Particle classes that can be identified
+                by the detection system.
+            </p>
 
-                <img
-                    id="outputResultImage"
-                    src=""
-                    alt="YOLO detected image"
-                >
+        </div>
 
-                <p id="outputImageText">
-                    Detection result will appear here
-                </p>
+
+        <div class="particles-grid">
+
+            <!-- DIRT -->
+            <div class="particle-card non-plastic">
+
+                <div class="particle-icon">
+                    🟤
+                </div>
+
+                <h3>DIRT</h3>
+
+                <span>
+                    Non-Plastic
+                </span>
+
+            </div>
+
+
+            <!-- PET -->
+            <div class="particle-card plastic">
+
+                <div class="particle-icon">
+                    🔵
+                </div>
+
+                <h3>PET</h3>
+
+                <span>
+                    Plastic
+                </span>
+
+            </div>
+
+
+            <!-- HDPE -->
+            <div class="particle-card plastic">
+
+                <div class="particle-icon">
+                    🟣
+                </div>
+
+                <h3>HDPE</h3>
+
+                <span>
+                    Plastic
+                </span>
+
+            </div>
+
+
+            <!-- V.FIBER -->
+            <div class="particle-card plastic">
+
+                <div class="particle-icon">
+                    🧵
+                </div>
+
+                <h3>V.FIBER</h3>
+
+                <span>
+                    Plastic
+                </span>
+
+            </div>
+
+
+            <!-- PELLET -->
+            <div class="particle-card plastic">
+
+                <div class="particle-icon">
+                    ⚪
+                </div>
+
+                <h3>PELLET</h3>
+
+                <span>
+                    Plastic
+                </span>
+
+            </div>
+
+
+            <!-- FIBER -->
+            <div class="particle-card plastic">
+
+                <div class="particle-icon">
+                    🪡
+                </div>
+
+                <h3>FIBER</h3>
+
+                <span>
+                    Plastic
+                </span>
+
+            </div>
+
+
+            <!-- BEAD -->
+            <div class="particle-card plastic">
+
+                <div class="particle-icon">
+                    🔘
+                </div>
+
+                <h3>BEAD</h3>
+
+                <span>
+                    Plastic
+                </span>
 
             </div>
 
         </div>
 
-    </div>
+    </section>
 
 
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="section about-section">
 
-    <!-- COUNTS -->
+        <div class="section-title">
 
-    <div class="particles-container">
-
-        <div class="particle-card">
-
-            <h3>
-                Total Particles
-            </h3>
-
-            <span id="totalParticles">
-                0
-            </span>
+            <h2>ABOUT THE PROJECT</h2>
 
         </div>
 
-
-        <div class="particle-card">
-
-            <h3>
-                Plastic Particles
-            </h3>
-
-            <span id="plasticParticles">
-                0
-            </span>
-
-        </div>
-
-
-        <div class="particle-card">
-
-            <h3>
-                Non-Plastic Particles
-            </h3>
-
-            <span id="nonPlasticParticles">
-                0
-            </span>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- STATUS -->
-
-    <div class="water-status-card">
-
-        <h3>
-            Water Status
-        </h3>
-
-        <span id="waterStatus">
-            Waiting for analysis
-        </span>
-
-    </div>
-
-
-
-    <!-- DETECTIONS -->
-
-    <div class="detection-details">
-
-        <h3>
-            Detected Particle Details
-        </h3>
-
-        <div id="detectionList">
+        <div class="about-content">
 
             <p>
-                No analysis performed yet.
+                Microplastic Detection is an AI-powered system
+                designed to identify and analyze particles present
+                in water sample images.
+            </p>
+
+            <p>
+                The system uses computer vision and YOLO-based
+                object detection to identify different particle
+                classes and provide useful analysis information.
             </p>
 
         </div>
 
-    </div>
+    </section>
 
 
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
 
-    <!-- DOWNLOAD -->
+        <p>
+            © 2026 Microplastic Detection
+        </p>
 
-    <a
-        id="downloadButton"
-        class="download-btn"
-        href="#"
-        download="microplastic_detection_result.png"
-        style="display:none;"
-    >
-        Download Detected Image
-    </a>
+        <p>
+            AI-powered water particle analysis
+        </p>
 
-</section>
+    </footer>
 
 
-
-<!-- ========================================================
-     FOOTER
-========================================================= -->
-
-<footer>
-
-    <p>
-        Microplastic Detection in Water
-    </p>
-
-    <p>
-        AI-Based Water Sample Analysis
-    </p>
-
-</footer>
-
-
-
-<!-- ========================================================
-     SCRIPT
-========================================================= -->
-
-<script src="script.js?v=10"></script>
+    <!-- JavaScript -->
+    <script src="/script.js"></script>
 
 </body>
-
 </html>

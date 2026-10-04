@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Analysis History - Microplastic Detection</title>
+
+    <link
+        rel="stylesheet"
+        href="styles.css">
+
+</head>
+
+
+<body class="dashboard-page">
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="dashboard-navbar">
+
+        <div class="dashboard-logo">
+            Micro Plastic Detection
+        </div>
+
+
+        <div class="dashboard-user">
+
+            <div class="user-avatar">
+                👤
+            </div>
+
+            <div class="user-info">
+
+                <strong id="historyUserName">
+                    User
+                </strong>
+
+                <span id="historyUserEmail">
+                    -
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- IMPORTANT: type="button" -->
+
+        <button
+            type="button"
+            class="btn primary-btn"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </header>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="history-main">
+
+        <section class="history-section">
+
+
+            <!-- ================= HEADING ================= -->
+
+            <div class="section-heading">
+
+                <p class="small-title">
+                    YOUR ANALYSIS
+                </p>
+
+                <h1>
+                    Analysis History
+                </h1>
+
+                <p>
+                    View your previous microplastic detection analyses.
+                </p>
+
+            </div>
+
+
+
+            <!-- ================= ACTIONS ================= -->
+
+            <div class="results-actions">
+
+                <button
+                    type="button"
+                    class="btn secondary-btn"
+                    onclick="goToDashboard()">
+
+                    ← Dashboard
+
+                </button>
+
+
+                <button
+                    type="button"
+                    id="refreshHistoryButton"
+                    class="btn primary-btn"
+                    onclick="refreshHistory()">
+
+                    ↻ Refresh
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ================= MESSAGE ================= -->
+
+            <div
+                id="historyMessage"
+                class="history-message">
+
+                Loading history...
+
+            </div>
+
+
+
+            <!-- ================= TABLE ================= -->
+
+            <div class="history-table-wrapper">
+
+                <table class="history-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Original
+                            </th>
+
+                            <th>
+                                Detected
+                            </th>
+
+                            <th>
+                                Total
+                            </th>
+
+                            <th>
+                                Plastic
+                            </th>
+
+                            <th>
+                                Non-Plastic
+                            </th>
+
+                            <th>
+                                Purity
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="historyTableBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="script.js"></script>
+
+
+    <!-- ================= PAGE FUNCTIONS ================= -->
+
+    <script>
+
+        function goToDashboard() {
+
+            window.location.href =
+                "dashboard.html";
+
+        }
+
+
+        async function refreshHistory() {
+
+            const button =
+                document.getElementById(
+                    "refreshHistoryButton"
+                );
+
+            const message =
+                document.getElementById(
+                    "historyMessage"
+                );
+
+
+            if (button) {
+
+                button.disabled = true;
+
+                button.textContent =
+                    "Refreshing...";
+
+            }
+
+
+            if (message) {
+
+                message.textContent =
+                    "Refreshing history...";
+
+            }
+
+
+            try {
+
+                await loadHistory();
+
+            } catch (error) {
+
+                console.error(
+                    "Refresh error:",
+                    error
+                );
+
+            }
+
+
+            if (button) {
+
+                button.disabled = false;
+
+                button.textContent =
+                    "↻ Refresh";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

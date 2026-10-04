@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sign Up - Microplastic Detection</title>
+
+    <link rel="stylesheet" href="/styles.css">
+
+</head>
+
+
+<body class="auth-page">
+
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <!-- IMPORTANT: Home goes to Flask "/" -->
+        <a href="/" class="logo">
+
+            🧪
+
+            <span>
+                Microplastic Detection
+            </span>
+
+        </a>
+
+
+        <div class="nav-buttons">
+
+            <!-- HOME -->
+<a href="/index.html" class="btn btn-outline">
+    Home
+</a>
+
+
+            <!-- SIGN IN -->
+            <a href="/signin.html" class="btn btn-primary">
+                Sign In
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- SIGN UP -->
+
+    <main class="auth-container">
+
+        <div class="auth-card">
+
+
+            <div class="auth-header">
+
+                <div class="auth-icon">
+                    🧪
+                </div>
+
+                <h1>Create Account</h1>
+
+                <p>
+                    Create an account to start detecting microplastics
+                </p>
+
+            </div>
+
+
+
+            <form id="signupForm">
+
+
+                <!-- FULL NAME -->
+
+                <div class="form-group">
+
+                    <label for="signupName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="signupName"
+                        name="full_name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="signupEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="signupEmail"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="signupPassword">
+                        Password
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="signupPassword"
+                            name="password"
+                            placeholder="Create a password"
+                            required
+                            minlength="6"
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="toggleSignupPassword()"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="signupConfirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="signupConfirmPassword"
+                            name="confirm_password"
+                            placeholder="Confirm your password"
+                            required
+                            minlength="6"
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="toggleConfirmPassword()"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MESSAGE -->
+
+                <div
+                    id="signupMessage"
+                    class="auth-message"
+                    style="display:none;"
+                ></div>
+
+
+
+                <!-- SIGN UP BUTTON -->
+
+                <button
+                    type="submit"
+                    class="btn btn-primary auth-submit"
+                >
+                    Create Account
+                </button>
+
+
+            </form>
+
+
+
+            <div class="auth-footer">
+
+                <p>
+
+                    Already have an account?
+
+                    <a href="/signin.html">
+                        Sign In
+                    </a>
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 Microplastic Detection.
+            All rights reserved.
+        </p>
+
+    </footer>
+
+
+
+    <script>
+
+        /* =================================
+           PASSWORD TOGGLE
+        ================================= */
+
+        function toggleSignupPassword() {
+
+            const password =
+                document.getElementById("signupPassword");
+
+            const button =
+                password.parentElement.querySelector(
+                    ".password-toggle"
+                );
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                button.textContent = "🙈";
+
+            } else {
+
+                password.type = "password";
+
+                button.textContent = "👁";
+
+            }
+
+        }
+
+
+
+        /* =================================
+           CONFIRM PASSWORD TOGGLE
+        ================================= */
+
+        function toggleConfirmPassword() {
+
+            const password =
+                document.getElementById(
+                    "signupConfirmPassword"
+                );
+
+            const button =
+                password.parentElement.querySelector(
+                    ".password-toggle"
+                );
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                button.textContent = "🙈";
+
+            } else {
+
+                password.type = "password";
+
+                button.textContent = "👁";
+
+            }
+
+        }
+
+
+
+        /* =================================
+           SHOW MESSAGE
+        ================================= */
+
+        function showSignupMessage(message, type) {
+
+            const messageBox =
+                document.getElementById("signupMessage");
+
+            messageBox.textContent = message;
+
+            messageBox.style.display = "block";
+
+            messageBox.className =
+                "auth-message " + type;
+
+        }
+
+
+
+        /* =================================
+           SIGN UP
+        ================================= */
+
+        document
+            .getElementById("signupForm")
+            .addEventListener("submit", async function(event) {
+
+                event.preventDefault();
+
+
+                const fullName =
+                    document
+                        .getElementById("signupName")
+                        .value
+                        .trim();
+
+
+                const email =
+                    document
+                        .getElementById("signupEmail")
+                        .value
+                        .trim();
+
+
+                const password =
+                    document
+                        .getElementById("signupPassword")
+                        .value;
+
+
+                const confirmPassword =
+                    document
+                        .getElementById(
+                            "signupConfirmPassword"
+                        )
+                        .value;
+
+
+
+                /* CHECK PASSWORD */
+
+                if (password !== confirmPassword) {
+
+                    showSignupMessage(
+                        "Passwords do not match.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+
+                /* PASSWORD LENGTH */
+
+                if (password.length < 6) {
+
+                    showSignupMessage(
+                        "Password must contain at least 6 characters.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+
+                const submitButton =
+                    document.querySelector(".auth-submit");
+
+                submitButton.disabled = true;
+
+                submitButton.textContent =
+                    "Creating Account...";
+
+
+
+                try {
+
+                    const response = await fetch(
+                        "/api/signup",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+
+                            credentials: "include",
+
+                            body: JSON.stringify({
+
+                                full_name: fullName,
+
+                                email: email,
+
+                                password: password
+
+                            })
+
+                        }
+                    );
+
+
+
+                    const data =
+                        await response.json();
+
+
+
+                    if (
+                        response.ok &&
+                        data.success
+                    ) {
+
+                        if (data.user) {
+
+                            localStorage.setItem(
+                                "user",
+                                JSON.stringify(data.user)
+                            );
+
+                        }
+
+
+                        showSignupMessage(
+                            "Account created successfully! Redirecting...",
+                            "success"
+                        );
+
+
+                        setTimeout(function() {
+
+                            window.location.href =
+                                "/dashboard.html";
+
+                        }, 700);
+
+
+                    } else {
+
+                        showSignupMessage(
+                            data.message ||
+                            "Unable to create account.",
+                            "error"
+                        );
+
+
+                        submitButton.disabled = false;
+
+                        submitButton.textContent =
+                            "Create Account";
+
+                    }
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Signup error:",
+                        error
+                    );
+
+
+                    showSignupMessage(
+                        "Unable to connect to server. Please try again.",
+                        "error"
+                    );
+
+
+                    submitButton.disabled = false;
+
+                    submitButton.textContent =
+                        "Create Account";
+
+                }
+
+            });
+            function goHome() {
+    window.location.replace("/");
+}
+
+    </script>
+
+</body>
+</html>

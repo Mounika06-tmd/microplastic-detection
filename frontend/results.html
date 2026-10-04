@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analysis Results - Microplastic Detection</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            Micro Plastic Detection
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="history.html">
+                History
+            </a>
+
+        </nav>
+
+        <div class="nav-buttons">
+
+            <button
+                class="btn secondary-btn"
+                onclick="window.location.href='dashboard.html'">
+                Dashboard
+            </button>
+
+            <button
+                class="btn primary-btn"
+                onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= RESULTS ================= -->
+
+    <main class="results-main">
+
+        <section class="results-section">
+
+            <div class="section-heading">
+
+                <p class="small-title">
+                    AI ANALYSIS RESULTS
+                </p>
+
+                <h1>
+                    Detection Results
+                </h1>
+
+                <p>
+                    Detailed analysis of your water sample.
+                </p>
+
+            </div>
+
+
+            <!-- ================= IMAGES ================= -->
+
+            <div class="results-images">
+
+                <!-- ORIGINAL -->
+
+                <div class="result-image-card">
+
+                    <div class="result-card-header">
+
+                        <h2>
+                            Original Image
+                        </h2>
+
+                    </div>
+
+                    <div class="result-image-container">
+
+                        <img
+                            id="originalResultImage"
+                            src=""
+                            alt="Original water sample"
+                        >
+
+                        <p id="originalImageText">
+                            Original image will appear here
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DETECTED -->
+
+                <div class="result-image-card">
+
+                    <div class="result-card-header">
+
+                        <h2>
+                            Detected Image
+                        </h2>
+
+                        <span class="ai-badge">
+                            YOLO AI
+                        </span>
+
+                    </div>
+
+                    <div class="result-image-container">
+
+                        <img
+                            id="outputResultImage"
+                            src=""
+                            alt="Detected particles"
+                        >
+
+                        <p id="outputImageText">
+                            Detection result will appear here
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= SUMMARY ================= -->
+
+            <div class="results-summary-grid">
+
+                <div class="result-stat-card">
+
+                    <h3>
+                        Total Particles
+                    </h3>
+
+                    <strong id="totalParticles">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="result-stat-card">
+
+                    <h3>
+                        Plastic Particles
+                    </h3>
+
+                    <strong id="plasticParticles">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="result-stat-card">
+
+                    <h3>
+                        Non-Plastic Particles
+                    </h3>
+
+                    <strong id="nonPlasticParticles">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="result-stat-card">
+
+                    <h3>
+                        Purity Index
+                    </h3>
+
+                    <strong id="purityIndex">
+                        0%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= WATER STATUS ================= -->
+
+            <div class="water-status-section">
+
+                <div
+                    class="water-status-card"
+                    id="waterStatusCard">
+
+                    <h2>
+                        Water Status
+                    </h2>
+
+                    <strong id="waterStatus">
+                        Waiting for analysis
+                    </strong>
+
+                    <p id="waterStatusDescription">
+                        Analysis status will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= DISTRIBUTION ================= -->
+
+            <div class="distribution-layout">
+
+
+                <!-- CHART -->
+
+                <div class="chart-card">
+
+                    <h2>
+                        Particle Distribution
+                    </h2>
+
+                    <div class="chart-container">
+
+                        <canvas id="particleChart"></canvas>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CLASS LIST -->
+
+                <div class="class-list-card">
+
+                    <h2>
+                        Detected Classes
+                    </h2>
+
+                    <div id="classList">
+
+                        <p>
+                            No particles detected.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CONFIDENCE ================= -->
+
+            <div class="chart-card confidence-card">
+
+                <h2>
+                    Detection Confidence
+                </h2>
+
+                <div
+                    id="confidenceList"
+                    class="confidence-list">
+
+                    <p>
+                        No detections available.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= PARTICLE DETAILS ================= -->
+
+            <div class="chart-card">
+
+                <h2>
+                    Detected Particle Details
+                </h2>
+
+                <div id="detectionList">
+
+                    <p>
+                        No analysis performed yet.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= ACTIONS ================= -->
+
+            <div class="results-actions">
+
+                <button
+                    class="btn secondary-btn"
+                    onclick="window.location.href='dashboard.html'">
+
+                    ← Back to Dashboard
+
+                </button>
+
+
+                <button
+                    class="btn secondary-btn"
+                    onclick="window.location.href='history.html'">
+
+                    View History
+
+                </button>
+
+
+                <button
+                    class="btn primary-btn"
+                    onclick="downloadPDFReport()">
+
+                    Download PDF
+
+                </button>
+
+
+                <a
+                    id="downloadButton"
+                    class="btn primary-btn"
+                    href="#"
+                    download
+                    style="display:none;">
+
+                    Download Detected Image
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= CHART JS ================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

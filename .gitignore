@@ -1,14 +1,17 @@
+# Python
 __pycache__/
 *.pyc
-
-backend/uploads/*
-backend/outputs/*
-
-.env
 .venv/
 venv/
 
-.vscode/
-.idea/
+# Environment
+.env
 
-node_modules/
+# SQLite database
+backend/database.db
+backend/database_backup.db
+backend/database_corrupted_backup.db.db
+
+# Uploaded/generated files
+backend/uploads/*
+backend/outputs/*

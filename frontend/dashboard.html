@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - Microplastic Detection</title>
+
+    <link rel="stylesheet" href="/styles.css">
+
+</head>
+
+
+<body class="dashboard-page">
+
+
+<!-- =====================================================
+     TOP NAVBAR
+===================================================== -->
+
+<header class="dashboard-navbar">
+
+    <a href="/" class="dashboard-logo">
+        🧪
+        <span>Microplastic Detection</span>
+    </a>
+
+
+    <div class="dashboard-user">
+
+        <div class="user-avatar">
+            👤
+        </div>
+
+        <div class="user-info">
+
+            <strong id="userName">
+                Loading...
+            </strong>
+
+            <span id="userEmail">
+                Loading...
+            </span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     DASHBOARD LAYOUT
+===================================================== -->
+
+<div class="dashboard-layout">
+
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside class="sidebar">
+
+        <nav class="sidebar-menu">
+
+
+            <a href="/dashboard.html"
+               class="sidebar-item active">
+
+                <span>📊</span>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a href="#analysis"
+               class="sidebar-item">
+
+                <span>🔬</span>
+
+                <span>New Analysis</span>
+
+            </a>
+
+
+            <a href="/history.html"
+               class="sidebar-item">
+
+                <span>📜</span>
+
+                <span>History</span>
+
+            </a>
+
+
+            <a href="#profile"
+               class="sidebar-item">
+
+                <span>👤</span>
+
+                <span>Profile</span>
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- Logout -->
+
+        <button
+            class="sidebar-logout"
+            onclick="logout()">
+
+            <span>🚪</span>
+
+            <span>Logout</span>
+
+        </button>
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="dashboard-main">
+
+
+        <!-- Welcome -->
+
+        <section class="dashboard-welcome">
+
+            <div>
+
+                <p class="welcome-small">
+                    Welcome back 👋
+                </p>
+
+                <h1 id="welcomeName">
+                    User
+                </h1>
+
+                <p>
+                    Ready to analyze your water sample?
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             NEW ANALYSIS
+        ================================================== -->
+
+        <section id="analysis"
+                 class="analysis-section">
+
+
+            <div class="dashboard-section-title">
+
+                <div>
+
+                    <h2>
+                        🔬 New Analysis
+                    </h2>
+
+                    <p>
+                        Upload an image or capture a sample
+                        using your camera.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Analysis cards -->
+
+            <div class="analysis-options">
+
+
+                <!-- Upload -->
+
+                <div class="analysis-card">
+
+                    <div class="analysis-card-icon">
+                        📷
+                    </div>
+
+                    <h3>
+                        Upload Image
+                    </h3>
+
+                    <p>
+                        Select a water sample image
+                        from your device.
+                    </p>
+
+
+                    <input
+                        type="file"
+                        id="imageInput"
+                        accept="image/*"
+                        hidden
+                    >
+
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="document.getElementById('imageInput').click()">
+
+                        Choose Image
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- Camera -->
+
+                <div class="analysis-card">
+
+                    <div class="analysis-card-icon">
+                        📹
+                    </div>
+
+                    <h3>
+                        Camera Detection
+                    </h3>
+
+                    <p>
+                        Capture a water sample image
+                        using your camera.
+                    </p>
+
+                    <button
+                        class="btn btn-outline"
+                        onclick="openCamera()">
+
+                        Open Camera
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 IMAGE PREVIEW
+            ================================================== -->
+
+            <div
+                id="previewArea"
+                class="preview-area"
+                style="display: none;">
+
+                <h3>
+                    Selected Image
+                </h3>
+
+
+                <img
+                    id="previewImage"
+                    class="preview-image"
+                    alt="Selected water sample"
+                >
+
+
+                <div class="preview-actions">
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="analyzeImage()">
+
+                        🔬 Analyze Image
+
+                    </button>
+
+
+                    <button
+                        class="btn btn-outline"
+                        onclick="clearImage()">
+
+                        Cancel
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             CAMERA AREA
+        ================================================== -->
+
+        <section
+            id="cameraArea"
+            class="camera-area"
+            style="display: none;">
+
+            <div class="dashboard-section-title">
+
+                <div>
+
+                    <h2>
+                        📹 Camera
+                    </h2>
+
+                    <p>
+                        Position your sample inside
+                        the camera frame.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <video
+                id="cameraVideo"
+                autoplay
+                playsinline>
+            </video>
+
+
+            <canvas
+                id="cameraCanvas"
+                style="display: none;">
+            </canvas>
+
+
+            <div class="camera-actions">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="captureImage()">
+
+                    📸 Capture
+
+                </button>
+
+
+                <button
+                    class="btn btn-outline"
+                    onclick="closeCamera()">
+
+                    Close Camera
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PROFILE
+        ================================================== -->
+
+        <section
+            id="profile"
+            class="profile-section">
+
+            <div class="dashboard-section-title">
+
+                <div>
+
+                    <h2>
+                        👤 Profile
+                    </h2>
+
+                    <p>
+                        Your account information.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-card">
+
+                <div class="profile-row">
+
+                    <span>
+                        Full Name
+                    </span>
+
+                    <strong id="profileName">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-row">
+
+                    <span>
+                        Email Address
+                    </span>
+
+                    <strong id="profileEmail">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-row">
+
+                    <span>
+                        Account Status
+                    </span>
+
+                    <strong class="account-active">
+                        ● Active
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+let selectedFile = null;
+
+let cameraStream = null;
+
+
+/* =====================================================
+   CHECK LOGIN / LOAD USER
+===================================================== */
+
+async function loadUser() {
+
+    try {
+
+        const response = await fetch("/api/me", {
+
+            method: "GET",
+
+            credentials: "include"
+
+        });
+
+
+        const data = await response.json();
+
+
+        if (!response.ok || !data.success) {
+
+            window.location.href = "/signin.html";
+
+            return;
+
+        }
+
+
+        const user = data.user;
+
+
+        document.getElementById("userName")
+            .textContent = user.full_name;
+
+        document.getElementById("userEmail")
+            .textContent = user.email;
+
+
+        document.getElementById("welcomeName")
+            .textContent = user.full_name;
+
+
+        document.getElementById("profileName")
+            .textContent = user.full_name;
+
+        document.getElementById("profileEmail")
+            .textContent = user.email;
+
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        window.location.href = "/signin.html";
+
+    }
+
+}
+
+
+/* =====================================================
+   IMAGE UPLOAD
+===================================================== */
+
+document
+    .getElementById("imageInput")
+    .addEventListener("change", function(event) {
+
+
+        const file = event.target.files[0];
+
+
+        if (!file) {
+
+            return;
+
+        }
+
+
+        if (!file.type.startsWith("image/")) {
+
+            alert("Please select an image file.");
+
+            return;
+
+        }
+
+
+        selectedFile = file;
+
+
+        const imageURL =
+            URL.createObjectURL(file);
+
+
+        document.getElementById("previewImage")
+            .src = imageURL;
+
+
+        document.getElementById("previewArea")
+            .style.display = "block";
+
+
+        document.getElementById("previewArea")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    });
+
+
+
+/* =====================================================
+   ANALYZE IMAGE
+===================================================== */
+
+async function analyzeImage() {
+
+
+    if (!selectedFile) {
+
+        alert("Please select an image first.");
+
+        return;
+
+    }
+
+
+    const formData = new FormData();
+
+
+    formData.append(
+        "image",
+        selectedFile
+    );
+
+
+    const analyzeButton =
+        document.querySelector(
+            "#previewArea .btn-primary"
+        );
+
+
+    analyzeButton.disabled = true;
+
+    analyzeButton.textContent =
+        "Analyzing...";
+
+
+    try {
+
+
+        const response =
+            await fetch("/predict", {
+
+                method: "POST",
+
+                credentials: "include",
+
+                body: formData
+
+            });
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok || !data.success) {
+
+            alert(
+                data.message ||
+                "Analysis failed. Please try again."
+            );
+
+            analyzeButton.disabled = false;
+
+            analyzeButton.textContent =
+                "🔬 Analyze Image";
+
+            return;
+
+        }
+
+
+        /*
+         * Save result temporarily so
+         * results.html can display it.
+         */
+
+        sessionStorage.setItem(
+            "analysisResult",
+            JSON.stringify(data)
+        );
+
+
+        /*
+         * Save original image
+         * as a data URL.
+         */
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload = function(event) {
+
+            sessionStorage.setItem(
+                "originalImage",
+                event.target.result
+            );
+
+
+            window.location.href =
+                "/results.html";
+
+        };
+
+
+        reader.readAsDataURL(selectedFile);
+
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Unable to connect to the server."
+        );
+
+
+        analyzeButton.disabled = false;
+
+        analyzeButton.textContent =
+            "🔬 Analyze Image";
+
+    }
+
+}
+
+
+/* =====================================================
+   CLEAR IMAGE
+===================================================== */
+
+function clearImage() {
+
+    selectedFile = null;
+
+
+    document.getElementById("imageInput")
+        .value = "";
+
+
+    document.getElementById("previewImage")
+        .src = "";
+
+
+    document.getElementById("previewArea")
+        .style.display = "none";
+
+}
+
+
+/* =====================================================
+   CAMERA
+===================================================== */
+
+async function openCamera() {
+
+    try {
+
+        cameraStream =
+            await navigator.mediaDevices.getUserMedia({
+
+                video: {
+                    facingMode: "environment"
+                },
+
+                audio: false
+
+            });
+
+
+        const video =
+            document.getElementById("cameraVideo");
+
+
+        video.srcObject =
+            cameraStream;
+
+
+        document.getElementById("cameraArea")
+            .style.display = "block";
+
+
+        document.getElementById("cameraArea")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Camera access was denied or is not available."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CAPTURE CAMERA IMAGE
+===================================================== */
+
+function captureImage() {
+
+    const video =
+        document.getElementById("cameraVideo");
+
+
+    const canvas =
+        document.getElementById("cameraCanvas");
+
+
+    canvas.width =
+        video.videoWidth;
+
+    canvas.height =
+        video.videoHeight;
+
+
+    const context =
+        canvas.getContext("2d");
+
+
+    context.drawImage(
+        video,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    canvas.toBlob(function(blob) {
+
+
+        selectedFile =
+            new File(
+                [blob],
+                "camera_sample.jpg",
+                {
+                    type: "image/jpeg"
+                }
+            );
+
+
+        const imageURL =
+            URL.createObjectURL(blob);
+
+
+        document.getElementById("previewImage")
+            .src = imageURL;
+
+
+        document.getElementById("previewArea")
+            .style.display = "block";
+
+
+        closeCamera();
+
+
+        document.getElementById("previewArea")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+
+    }, "image/jpeg", 0.95);
+
+}
+
+
+/* =====================================================
+   CLOSE CAMERA
+===================================================== */
+
+function closeCamera() {
+
+    if (cameraStream) {
+
+        cameraStream
+            .getTracks()
+            .forEach(function(track) {
+
+                track.stop();
+
+            });
+
+        cameraStream = null;
+
+    }
+
+
+    document.getElementById("cameraVideo")
+        .srcObject = null;
+
+
+    document.getElementById("cameraArea")
+        .style.display = "none";
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+async function logout() {
+
+    try {
+
+        await fetch("/api/logout", {
+
+            method: "POST",
+
+            credentials: "include"
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+
+    sessionStorage.clear();
+
+
+    window.location.href =
+        "/";
+
+}
+
+
+/* =====================================================
+   LOAD USER WHEN PAGE OPENS
+===================================================== */
+
+loadUser();
+
+</script>
+
+</body>
+
+</html>
