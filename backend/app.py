@@ -165,7 +165,7 @@ initialize_database()
 MODEL_PATH = os.path.join(
     PROJECT_DIR,
     "model",
-    "yolov8s-seg.pt"
+    "best.pt"
 )
 
 print("MODEL PATH:")
@@ -1004,13 +1004,7 @@ def predict():
 
     plastic_classes = {
 
-        "fiber",
-        "fragment",
-        "pellet",
-        "bead",
-        "hdpe",
-        "pet",
-        "v.fiber"
+       "microplastic"
 
     }
 

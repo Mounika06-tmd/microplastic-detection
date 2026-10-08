@@ -292,22 +292,29 @@ img {
 }
 
 /* PARTICLES */
-
 .particles-grid {
-    max-width: 1200px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .particle-card {
-    padding: 25px;
-    background: #0c1a2b;
-    border: 1px solid #1e3a52;
-    border-radius: 13px;
+    width: 380px;
+    min-height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    transition: 0.3s ease;
+    box-sizing: border-box;
+
+    /* Outline */
+    border: 1px solid #1e4668;
+    border-radius: 14px;
+    background: #0d1c2d;
 }
 
 .particle-card:hover {
